@@ -58,6 +58,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Formulario">Formulario</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Convertidor">Convertidor</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Calculadora">Calculadora</a></li>
                     </ul>
                 </div>
             </div>
