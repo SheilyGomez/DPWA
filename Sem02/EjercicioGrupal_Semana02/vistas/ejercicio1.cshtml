@@ -44,21 +44,21 @@
                     <div class="row mb-2">
                         <label for="form_name" class="form-label col-4 mt-2">Nombre completo:</label><br />
                         <div class="col-8">
-                            <input name="form_name" type="text" class="form-control" id="form_name" placeholder="Ingrese su nombre completo">
+                            <input name="form_name" required type="text" class="form-control" id="form_name" placeholder="Ingrese su nombre completo">
                         </div>
                     </div>
 
                     <div class="row mb-2">
                         <label for="form_age" class="form-label col-4 mt-2">Edad:</label><br />
                         <div class="col-8">
-                            <input name="form_age" type="text" class="form-control" id="form_age" placeholder="Ingrese su edad">
+                            <input name="form_age" required type="number" class="form-control" id="form_age" max="70" min="18" placeholder="Ingrese su edad">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="form_salary" class="form-label col-4 mt-2">Salario:</label><br />
                         <div class="col-8">
-                            <input name="form_salary" type="text" class="form-control" id="form_salary" placeholder="Ingrese su salario base">
+                            <input name="form_salary" required type="number" class="form-control" id="form_salary" placeholder="Ingrese su salario base">
                         </div>
                     </div>
 
@@ -69,9 +69,62 @@
                 </fieldset>
             </form>
         </div><br /><br />
+        <div>
+            @if (IsPost)
+            {
+                string name = Request.Form["form_name"];
+
+                if (name.Any(char.IsDigit))
+                {
+
+                   <script>
+                       alert('Ocurrió un error al procesar los datos. Verifique la información ingresada.')
+
+                   </script>   
+                }
+                else
+                {
+                    int age = Request.Form["form_age"].AsInt();
+                    double salary = double.Parse(Request.Form["form_salary"]);
+                    int fec_na = 2025 - age;
+                    double renta = salary * 0.10;
+                    double AFP = salary * 0.07;
+                    double planilla = salary * 0.05;
+                    double f_salary = salary - (renta + AFP + planilla);
+
+                    int vocales = name.ToLower().Count(c => "aeiou".Contains(c));
+
+                    <h3>Información Procesada</h3>
+
+                    <table>
+                        <tr>
+                            <td>
+                                <txt>
+                                    Nombre: @name (@vocales vocales)<br />
+                                    Año de nacimiento: @fec_na <br />
+                                    Salario sin descuento: @salary <br />
+                                    Descuento de renta: @renta <br />
+                                    Descuento de AFP: @AFP <br />
+                                    Descuento de planilla: @planilla <br />
+                                    <hr />
+                                    Salario final : @f_salary <br />
+                                </txt>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                }
+            }
+
+
+        </div>
 
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
