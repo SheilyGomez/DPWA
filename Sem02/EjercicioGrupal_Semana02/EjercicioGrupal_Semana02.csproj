@@ -88,12 +88,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clases\Estudiante.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="vistas\index.cshtml" />
     <Content Include="vistas\ejercicio1.cshtml" />
+    <Content Include="vistas\Procesa.cshtml" />
     <Content Include="vistas\ejercicio2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -103,7 +105,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="clases\" />
+    <Folder Include="styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,111 @@
+﻿@using EjercicioGrupal_Semana02.clases
+@{
+    Layout = null;
+
+    // Obtener los datos del formulario
+    var nombre = Request.QueryString["nombre"];
+    var nota1Materia1 = Convert.ToDouble(Request.QueryString["nota1Materia1"]);
+    var nota1Materia2 = Convert.ToDouble(Request.QueryString["nota1Materia2"]);
+    var nota2Materia1 = Convert.ToDouble(Request.QueryString["nota2Materia1"]);
+    var nota2Materia2 = Convert.ToDouble(Request.QueryString["nota2Materia2"]);
+
+    // Crear una instancia de la clase Estudiante
+    var estudiante = new Estudiante(nombre, nota1Materia1, nota1Materia2, nota2Materia1, nota2Materia2);
+
+    // Obtener los valores calculados
+    var notaFinalMateria1 = estudiante.CalcularNotaFinalMateria1();
+    var notaFinalMateria2 = estudiante.CalcularNotaFinalMateria2();
+    var carnet = estudiante.GenerarCarnet();
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados</title>
+    <!-- Bootswatch United Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/united/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Sistema de Notas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Ejercicio2.cshtml">Volver al formulario</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Información del Estudiante</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Nombre completo:</strong> @nombre</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Carnet:</strong> @carnet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Notas Finales</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Materia</th>
+                                <th>Nota 1</th>
+                                <th>Nota 2</th>
+                                <th>Nota Final</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Materia 1</td>
+                                <td>@nota1Materia1.ToString("F2")</td>
+                                <td>@nota2Materia1.ToString("F2")</td>
+                                <td><span class="badge bg-primary">@notaFinalMateria1.ToString("F2")</span></td>
+                            </tr>
+                            <tr>
+                                <td>Materia 2</td>
+                                <td>@nota1Materia2.ToString("F2")</td>
+                                <td>@nota2Materia2.ToString("F2")</td>
+                                <td><span class="badge bg-primary">@notaFinalMateria2.ToString("F2")</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="alert alert-info mt-3">
+                    <h5>Ponderaciones:</h5>
+                    <ul class="mb-0">
+                        <li>Materia 1: Nota 1 = 60%, Nota 2 = 40%</li>
+                        <li>Materia 2: Nota 1 = 75%, Nota 2 = 25%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
